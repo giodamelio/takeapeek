@@ -6,5 +6,10 @@
   "repository": "",
   "devDependencies": {
     "coffee-script": "~1.6.3"
+  },
+  "dependencies": {
+    "nconf": "~0.6.7",
+    "colors": "~0.6.1",
+    "connect": "~2.8.4"
   }
 }
