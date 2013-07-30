@@ -16,6 +16,9 @@ nconf
         "p":
             alias: "port"
             default: 3141
+        "o":
+            alias: "host"
+            default: "127.0.0.1"
         "v":
             alias: "verbose"
             default: false
@@ -43,7 +46,19 @@ if nconf.get("h") == true
     \t -h, --help \t\t Prints this help.
     """
     process.exit 0
+
+# Print the version info
 if nconf.get("V") == true
     {normalize} = require "path"
     console.log require(normalize(__dirname + "/../package.json")).version
     process.exit 0
+
+# Create the server
+takeapeek = require "./index"
+server = new takeapeek
+    directory: nconf.get "directory"
+    index: nconf.get "index"
+    dotfiles: nconf.get "dotfiles"
+    port: nconf.get "port"
+    verbose: nconf.get "verbose"
+server.listen()
