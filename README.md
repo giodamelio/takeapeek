@@ -1,7 +1,6 @@
 takeapeek
 =========
 
-
 A simple static webserver with only one command. Heavily inspired by [glance](https://github.com/jarofghosts/glance), this is really more of a learning experience then anything.
 
 Usage
@@ -16,3 +15,14 @@ Usage
     -q, --quite      Quite mode. No output    [default: false]
     -V, --version    Print the version info.  [default: false]
     -h, --help       Prints this help.        [default: false]
+
+Config files
+------------
+
+takeapeek will automaticly check `.takeapeekrc` and `~/.takeapeekrc`, you can specify a specific config file with the `-c` option.
+
+Config files are parsed as if they were options on the command line. E.g.
+
+    -d .. -v
+
+Would serve the parent directory verbosely
