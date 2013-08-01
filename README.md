@@ -12,5 +12,6 @@ Usage
     -n, --dotfiles    Show dotfiles. [false]
     -p, --port        The port to serve on. [3141]
     -v, --verbose     Verbose logging. [false]
+    -q, --quite       No output. [false]
     -V, --version     Print the version info.
     -h, --help        Prints this help.

@@ -9,6 +9,10 @@ module.exports = class takeapeek
         if not @options.directory.match(/^\//)
             @options.directory = path.normalize(__dirname + "/" + @options.directory)
 
+        # Overwrite console if we are in quite mode
+        if @options.quite
+            console["log"] = ->
+
         @server = connect()
 
         # Serve directory listings
@@ -21,6 +25,7 @@ module.exports = class takeapeek
         @server.use "/takeapeekstatic-3141", connect.static(path.normalize(__dirname + "/../static"))
 
     listen: ->
+        # Print a startup message unless we are in quite mode
         console.log "Serving static file from directory".green, "#{@options.directory}".cyan, "on port".green, "#{@options.port}".cyan
         @server.listen @options.port
         

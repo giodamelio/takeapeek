@@ -22,6 +22,9 @@ nconf
         "v":
             alias: "verbose"
             default: false
+        "q":
+            alias: "quite"
+            default: false
         "V":
             alias: "version"
             default: false
@@ -42,6 +45,7 @@ if nconf.get("h") == true
     \t -n, --dotfiles \t Show dotfiles. [false]
     \t -p, --port \t\t The port to serve on. [3141]
     \t -v, --verbose \t\t Verbose logging. [false]
+    \t -q, --quite \t\t No output. [false]
     \t -V, --version \t\t Print the version info.
     \t -h, --help \t\t Prints this help.
     """
@@ -61,4 +65,5 @@ server = new takeapeek
     dotfiles: nconf.get "dotfiles"
     port: nconf.get "port"
     verbose: nconf.get "verbose"
+    quite: nconf.get "quite"
 server.listen()
