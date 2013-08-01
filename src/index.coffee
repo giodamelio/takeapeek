@@ -24,11 +24,18 @@ module.exports = class takeapeek
         if @options.index
             @server.use connect.directory(@options.directory, { hidden: @options.dotfiles })
 
+        # Serve all files as text/plain if content-text
+        if @options["content-text"]
+            @server.use (req, res, next) ->
+                res.setHeader "Content-Type", "text/plain"
+                next()
+
         # Serve the files
         @server.use connect.static(@options.directory, { hidden: @options.dotfiles })
 
         # Serve the error pages
         @server.use "/takeapeekstatic-3141", connect.static(path.normalize(__dirname + "/../static"))
+        
 
     listen: ->
         # Print a startup message unless we are in quite mode

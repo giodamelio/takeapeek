@@ -20,6 +20,11 @@ module.exports =
     "c":
         alias: "config"
         describe: "Specify config file"
+    "t":
+        alias: "content-text"
+        describe: "Serve all files with content-type of 'text/plain'"
+        default: false
+        boolean: true
     "v":
         alias: "verbose"
         describe: "Verbose logging."

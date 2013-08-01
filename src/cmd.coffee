@@ -59,11 +59,5 @@ if argv.V == true
 
 # Create the server
 takeapeek = require "./index"
-server = new takeapeek
-    directory: argv.directory
-    index: argv.index
-    dotfiles: argv.dotfiles
-    port: argv.port
-    verbose: argv.verbose
-    quite: argv.quite
+server = new takeapeek argv
 server.listen()
