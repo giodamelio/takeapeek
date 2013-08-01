@@ -13,7 +13,12 @@ module.exports = class takeapeek
         if @options.quite and not @options.verbose
             console["log"] = ->
 
+        # Create the server
         @server = connect()
+
+        # Setup the logger if we are in verbose mode
+        if @options.verbose and not @options.quite
+            @server.use connect.logger "dev"
 
         # Serve directory listings
         @server.use connect.directory(@options.directory, { hidden: @options.dotfiles })
