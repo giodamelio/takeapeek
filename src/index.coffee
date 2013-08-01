@@ -21,7 +21,8 @@ module.exports = class takeapeek
             @server.use connect.logger "dev"
 
         # Serve directory listings
-        @server.use connect.directory(@options.directory, { hidden: @options.dotfiles })
+        if @options.index
+            @server.use connect.directory(@options.directory, { hidden: @options.dotfiles })
 
         # Serve the files
         @server.use connect.static(@options.directory, { hidden: @options.dotfiles })
