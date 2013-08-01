@@ -10,7 +10,7 @@ module.exports = class takeapeek
             @options.directory = path.normalize(__dirname + "/" + @options.directory)
 
         # Overwrite console if we are in quite mode
-        if @options.quite
+        if @options.quite and not @options.verbose
             console["log"] = ->
 
         @server = connect()
