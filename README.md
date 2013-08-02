@@ -49,3 +49,13 @@ You can use takeapeek as a module if you want.
     tap = new takeapeek options 
 
 The options line up to the long names in the usage above.
+
+Thanks
+------
+
+This project would have been a real pain in the ass without these awesome FOSS projects.
+
+ - [Connect](https://github.com/senchalabs/connect)
+ - [Optimist](https://github.com/substack/node-optimist)
+ - [lodash](https://github.com/bestiejs/lodash/)
+ - [colors](https://github.com/Marak/colors.js)

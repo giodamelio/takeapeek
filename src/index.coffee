@@ -11,13 +11,25 @@ directoryIndex = (directory, options) ->
             if stats.isDirectory()
                 fs.readdir path.join(directory, req.url), (err, files) ->
                     res.setHeader "Content-Type", "text/html"
-                    res.write "<ul>"
+
+                    # Read the template
+                    template = fs.readFileSync "static/template.html"
+
+                    # Replace the title
+                    template = template.toString().split("###title###").join(req.url)
+
+                    # Split the template
+                    template = template.split "###content###"
+
+                    # Write the first half of the template
+                    res.write template[0]
+
+                    # Write the directory list
+                    res.write "<ul class='list-unstyled'>"
 
                     # Write a link to the parent dir unless you are in the root dir
                     if req.url != "/"
-                        console.log req.url
                         parentdir = path.resolve req.url, ".."
-                        console.log parentdir
                         res.write "<li><a href='#{parentdir}'>..</a></li>"
 
                     # write a link to the files and dirs
@@ -25,6 +37,10 @@ directoryIndex = (directory, options) ->
                         filepath = path.join req.url, file
                         res.write "<li><a href='#{filepath}'>#{file}</a></li>"
                     res.write "</ul>"
+
+                    # Write the second half of the template
+                    res.write template[1]
+
                     res.end()
             else
                 next()
@@ -55,7 +71,20 @@ module.exports = class takeapeek
 
         # Setup the logger if we are in verbose mode
         if @options.verbose and not @options.quite
-            @server.use connect.logger "dev"
+            @server.use (req, res, next) ->
+                if req.url.split("/")[1] != "takeapeekstatic-3141"
+                    # Colorize status
+                    if res.statusCode >= 400
+                        status = res.statusCode.toString().red
+                    else if res.statusCode < 400
+                        status = res.statusCode.toString().green
+                    
+                    # Log it
+                    console.log req.method.grey, req.originalUrl.grey, status
+                next()
+
+        # Serve the error pages
+        @server.use "/takeapeekstatic-3141", connect.static(path.normalize(__dirname + "/../static"))
 
         # Serve directory listings
         if @options.index
@@ -68,14 +97,11 @@ module.exports = class takeapeek
                 try
                     res.setHeader "Content-Type", "text/plain"
                 catch error
-                    #console.log error
+                    console.log error
                 next()
 
         # Serve the files
         @server.use connect.static(@options.directory, { hidden: @options.dotfiles })
-
-        # Serve the error pages
-        @server.use "/takeapeekstatic-3141", connect.static(path.normalize(__dirname + "/../static"))
         
 
     listen: ->
