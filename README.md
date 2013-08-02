@@ -4,6 +4,17 @@ takeapeek
 
 A simple static webserver with only one command. Heavily inspired by [glance](https://github.com/jarofghosts/glance), this is really more of a learning experience then anything.
 
+Install
+-------
+
+You can install from npm
+
+    sudo npm install -g takeapeek
+
+Or get the latest from github(not really necessary, I push to npm often)
+
+    sudo npm install -g https://github.com/giodamelio/takeapeek.git
+
 Usage
 -----
 
@@ -28,3 +39,13 @@ Config files are parsed as if they were options on the command line. E.g.
     -d .. -v
 
 Would serve the parent directory verbosely
+
+Using as a module
+-----------------
+
+You can use takeapeek as a module if you want.
+
+    takeapeek = require "takeapeek"
+    tap = new takeapeek options 
+
+The options line up to the long names in the usage above.
