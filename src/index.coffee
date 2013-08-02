@@ -1,7 +1,20 @@
 path = require "path"
+fs = require "fs"
 
 connect = require "connect"
 colors = require "colors"
+
+directoryIndex = (directory, options) ->
+    return (req, res, next) ->
+        fs.stat path.join(directory, req.url), (err, stats) ->
+            if err then throw err
+            if stats.isDirectory()
+                fs.readdir path.join(directory, req.url), (err, files) ->
+                    for file in files
+                        res.write file + "\n"
+                    res.end()
+            else
+                next()
 
 module.exports = class takeapeek
     constructor: (@options) ->
@@ -16,18 +29,33 @@ module.exports = class takeapeek
         # Create the server
         @server = connect()
 
+        # Git rid of annoying favicon requests unless /favicon.ico exists
+        @server.use (req, res, next) ->
+            if req.url == "/favicon.ico"
+                fs.exists "favicon.ico", (exists) ->
+                    if exists
+                        next()
+                    else
+                        res.end()
+            else
+                next()
+
         # Setup the logger if we are in verbose mode
         if @options.verbose and not @options.quite
             @server.use connect.logger "dev"
 
         # Serve directory listings
         if @options.index
-            @server.use connect.directory(@options.directory, { hidden: @options.dotfiles })
+            #@server.use connect.directory(@options.directory, { hidden: @options.dotfiles })
+            @server.use directoryIndex(@options.directory, { hidden: @options.dotfiles })
 
         # Serve all files as text/plain if content-text
         if @options["content-text"]
             @server.use (req, res, next) ->
-                res.setHeader "Content-Type", "text/plain"
+                try
+                    res.setHeader "Content-Type", "text/plain"
+                catch error
+                    #console.log error
                 next()
 
         # Serve the files
