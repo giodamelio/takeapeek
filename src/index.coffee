@@ -10,8 +10,21 @@ directoryIndex = (directory, options) ->
             if err then throw err
             if stats.isDirectory()
                 fs.readdir path.join(directory, req.url), (err, files) ->
+                    res.setHeader "Content-Type", "text/html"
+                    res.write "<ul>"
+
+                    # Write a link to the parent dir unless you are in the root dir
+                    if req.url != "/"
+                        console.log req.url
+                        parentdir = path.resolve req.url, ".."
+                        console.log parentdir
+                        res.write "<li><a href='#{parentdir}'>..</a></li>"
+
+                    # write a link to the files and dirs
                     for file in files
-                        res.write file + "\n"
+                        filepath = path.join req.url, file
+                        res.write "<li><a href='#{filepath}'>#{file}</a></li>"
+                    res.write "</ul>"
                     res.end()
             else
                 next()
