@@ -49,7 +49,7 @@ module.exports = class takeapeek
     constructor: (@options) ->
         # Fix the path if it is . or ..
         if not @options.directory.match(/^\//)
-            @options.directory = path.normalize(__dirname + "/" + @options.directory)
+            @options.directory = path.normalize(process.cwd() + "/" + @options.directory)
 
         # Overwrite console if we are in quite mode
         if @options.quite and not @options.verbose

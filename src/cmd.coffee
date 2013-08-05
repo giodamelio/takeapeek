@@ -21,7 +21,7 @@ else
 
 # Get options from local config file
 try
-    local_config_args = optimist.parse(fs.readFileSync(__dirname + "/.takeapeekrc").toString().split(" "))
+    local_config_args = optimist.parse(fs.readFileSync(process.cwd() + "/.takeapeekrc").toString().split(" "))
 catch
     local_config_args = {}
 
