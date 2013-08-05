@@ -5,10 +5,12 @@ path =
     coffeescript: "node_modules/.bin/coffee"
     supervisor: "node_modules/.bin/supervisor"
 
-spawn = (cmd, options) ->
+spawn = (cmd, options, callback) ->
     p = child_process.spawn cmd, options.split " "
     p.stdout.on "data", (data) ->
         process.stdout.write data.toString()
+    p.on "exit", ->
+        callback()
 
 task "watch", "watch the coffeescript and server", ->
     invoke "coffee:watch"
@@ -31,11 +33,8 @@ task "addhashbang", "Added a hashbang to the output code", ->
 
 task "publish", "Compiles and publishes to npm", ->
     # Compile the coffeescript
-    p = child_process.spawn path.coffeescript, "--compile --output lib/ src/".split " "
-    p.stdout.on "data", (data) ->
-        process.stdout.write data.toString()
-
-    p.on "exit", ->
+    spawn path.coffeescript, "--compile --output lib/ src/".split " ", ->
+        # Add a hashbang to the cmd.js
         invoke "addhashbang"
 
         # Publish to npm
