@@ -13,7 +13,7 @@ directoryIndex = (directory, options) ->
                     res.setHeader "Content-Type", "text/html"
 
                     # Read the template
-                    template = fs.readFileSync "static/template.html"
+                    template = fs.readFileSync __dirname + "/static/template.html"
 
                     # Replace the title
                     template = template.toString().split("###title###").join(req.url)

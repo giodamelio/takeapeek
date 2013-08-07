@@ -10,7 +10,7 @@ spawn = (cmd, options, callback) ->
     p.stdout.on "data", (data) ->
         process.stdout.write data.toString()
     p.on "exit", ->
-        callback()
+        callback?()
 
 task "watch", "watch the coffeescript and server", ->
     invoke "coffee:watch"
