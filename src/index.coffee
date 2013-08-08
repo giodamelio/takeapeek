@@ -7,7 +7,12 @@ colors = require "colors"
 directoryIndex = (directory, options) ->
     return (req, res, next) ->
         fs.stat path.join(directory, req.url), (err, stats) ->
-            if err then throw err
+            if err
+                if err.code == "ENOENT"
+                    res.statusCode = 404
+                    return next()
+                else
+                    throw err
             if stats.isDirectory()
                 fs.readdir path.join(directory, req.url), (err, files) ->
                     res.setHeader "Content-Type", "text/html"
@@ -69,6 +74,14 @@ module.exports = class takeapeek
             else
                 next()
 
+        # Serve the error pages
+        @server.use "/takeapeekstatic-3141", connect.static(path.normalize(__dirname + "/../static"))
+
+        # Serve directory listings
+        if @options.index
+            #@server.use connect.directory(@options.directory, { hidden: @options.dotfiles })
+            @server.use directoryIndex(@options.directory, { hidden: @options.dotfiles })
+
         # Setup the logger if we are in verbose mode
         if @options.verbose and not @options.quite
             @server.use (req, res, next) ->
@@ -80,16 +93,8 @@ module.exports = class takeapeek
                         status = res.statusCode.toString().green
                     
                     # Log it
-                    console.log req.method.grey, req.originalUrl.grey, status
+                    console.log req.method.grey, req.originalUrl.cyan, status
                 next()
-
-        # Serve the error pages
-        @server.use "/takeapeekstatic-3141", connect.static(path.normalize(__dirname + "/../static"))
-
-        # Serve directory listings
-        if @options.index
-            #@server.use connect.directory(@options.directory, { hidden: @options.dotfiles })
-            @server.use directoryIndex(@options.directory, { hidden: @options.dotfiles })
 
         # Serve all files as text/plain if content-text
         if @options["content-text"]
