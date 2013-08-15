@@ -61,8 +61,8 @@ module.exports = class takeapeek
         if not @options.directory.match(/^\//)
             @options.directory = path.normalize(process.cwd() + "/" + @options.directory)
 
-        # Overwrite console if we are in quite mode
-        if @options.quite and not @options.verbose
+        # Overwrite console if we are in quiet mode
+        if @options.quiet and not @options.verbose
             console["log"] = ->
 
         # Create the server
@@ -88,7 +88,7 @@ module.exports = class takeapeek
             @server.use directoryIndex(@options.directory, { hidden: @options.dotfiles })
 
         # Setup the logger if we are in verbose mode
-        if @options.verbose and not @options.quite
+        if @options.verbose and not @options.quiet
             @server.use (req, res, next) ->
                 if req.url.split("/")[1] != "takeapeekstatic-3141"
                     # Colorize status
@@ -115,7 +115,7 @@ module.exports = class takeapeek
         
 
     listen: ->
-        # Print a startup message unless we are in quite mode
+        # Print a startup message unless we are in quiet mode
         console.log "Serving static file from directory".green, "#{@options.directory}".cyan, "on port".green, "#{@options.port}".cyan
         @server.listen @options.port
         

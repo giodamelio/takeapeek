@@ -31,8 +31,8 @@ module.exports =
         default: false
         boolean: true
     "q":
-        alias: "quite"
-        describe: "Quite mode. No output"
+        alias: "quiet"
+        describe: "Quiet mode. No output"
         default: false
         boolean: true
     "V":
