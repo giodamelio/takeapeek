@@ -10,7 +10,7 @@
   "main": "./lib/index.js",
   "bin": "./lib/cmd.js",
   "scripts": {
-    "test": "mocha"
+    "test": "cake test"
   },
   "devDependencies": {
     "coffee-script": "~1.6.3",
