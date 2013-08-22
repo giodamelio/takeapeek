@@ -2,6 +2,8 @@ takeapeek
 =========
 [![NPM version](https://badge.fury.io/js/takeapeek.png)](https://npmjs.org/package/takeapeek) [![Dependency Status](https://gemnasium.com/giodamelio/takeapeek.png)](https://gemnasium.com/giodamelio/takeapeek)
 
+[![NPM](https://nodei.co/npm/takeapeek.png)](https://nodei.co/npm/takeapeek/)
+
 A simple static webserver with only one command. Heavily inspired by [glance](https://github.com/jarofghosts/glance), this is really more of a learning experience then anything.
 
 Install
@@ -25,7 +27,7 @@ Usage
     -c, --config        Specify config file                              
     -t, --content-text  Serve all files with content-type of 'text/plain'  [default: false]
     -v, --verbose       Verbose logging.                                   [default: false]
-    -q, --quite         Quite mode. No output                              [default: false]
+    -q, --quiet         Quiet mode. No output                              [default: false]
     -V, --version       Print the version info.                            [default: false]
     -h, --help          Prints this help.
 
