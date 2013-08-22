@@ -4,6 +4,7 @@ fs = require "fs"
 path = 
     coffeescript: "node_modules/.bin/coffee"
     supervisor: "node_modules/.bin/supervisor"
+    mocha: "node_modules/.bin/mocha"
 
 spawn = (cmd, options, callback) ->
     p = child_process.spawn cmd, options.split " "
@@ -35,3 +36,6 @@ task "publish", "Compiles and publishes to npm", ->
 
         # Publish to npm
         spawn "npm", "publish"
+
+task "test", "Run the tests", ->
+    spawn path.mocha, "--colors"
