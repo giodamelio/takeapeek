@@ -1,6 +1,6 @@
 takeapeek
 =========
-[![NPM version](https://badge.fury.io/js/takeapeek.png)](https://npmjs.org/package/takeapeek) [![Dependency Status](https://gemnasium.com/giodamelio/takeapeek.png)](https://gemnasium.com/giodamelio/takeapeek)
+[![Build Status](https://travis-ci.org/giodamelio/takeapeek.png?branch=master)](https://travis-ci.org/giodamelio/takeapeek)[![NPM version](https://badge.fury.io/js/takeapeek.png)](https://npmjs.org/package/takeapeek) [![Dependency Status](https://gemnasium.com/giodamelio/takeapeek.png)](https://gemnasium.com/giodamelio/takeapeek)
 
 [![NPM](https://nodei.co/npm/takeapeek.png)](https://nodei.co/npm/takeapeek/)
 
