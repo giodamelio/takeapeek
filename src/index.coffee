@@ -1,8 +1,14 @@
 path = require "path"
 fs = require "fs"
+http = require "http"
 
 connect = require "connect"
 colors = require "colors"
+
+logger = ->
+    for key, value of arguments
+        process.stdout.write value + " "
+    process.stdout.write "\n"
 
 directoryIndex = (directory, options) ->
     return (req, res, next) ->
@@ -61,9 +67,9 @@ module.exports = class takeapeek
         if not @options.directory.match(/^\//)
             @options.directory = path.normalize(process.cwd() + "/" + @options.directory)
 
-        # Overwrite console if we are in quiet mode
+        # Overwrite logger if we are in quiet mode
         if @options.quiet and not @options.verbose
-            console["log"] = ->
+            logger = ->
 
         # Create the server
         @server = connect()
@@ -98,7 +104,7 @@ module.exports = class takeapeek
                         status = res.statusCode.toString().green
                     
                     # Log it
-                    console.log req.method.grey, req.originalUrl.cyan, status
+                    logger req.method.grey, req.originalUrl.cyan, status
                 next()
 
         # Serve all files as text/plain if content-text
@@ -107,7 +113,7 @@ module.exports = class takeapeek
                 try
                     res.setHeader "Content-Type", "text/plain"
                 catch error
-                    console.log error
+                    logger error
                 next()
 
         # Serve the files
@@ -116,8 +122,8 @@ module.exports = class takeapeek
 
     listen: ->
         # Print a startup message unless we are in quiet mode
-        console.log "Serving static file from directory".green, "#{@options.directory}".cyan, "on port".green, "#{@options.port}".cyan
-        @server.listen @options.port
+        logger "Serving static file from directory".green, "#{@options.directory}".cyan, "on port".green, "#{@options.port}".cyan
+        @server = http.createServer(@server).listen @options.port
 
     close: ->
         @server.close()
