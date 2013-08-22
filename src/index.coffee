@@ -118,4 +118,7 @@ module.exports = class takeapeek
         # Print a startup message unless we are in quiet mode
         console.log "Serving static file from directory".green, "#{@options.directory}".cyan, "on port".green, "#{@options.port}".cyan
         @server.listen @options.port
+
+    close: ->
+        @server.close()
         
