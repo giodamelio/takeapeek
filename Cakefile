@@ -25,17 +25,13 @@ task "coffee:watch", "Compile and watch the coffeescript", ->
 task "supervisor:watch", "use supervisor to auto reload the server", ->
     spawn path.supervisor, "-- lib/cmd.js -d .. -v"
 
-task "addhashbang", "Added a hashbang to the output code", ->
-    # Add a hashbang to the cmd.js
-    cmdjs = fs.readFileSync "lib/cmd.js"
-    cmdjs = "#!/usr/bin/env node\n" + cmdjs
-    fs.writeFileSync "lib/cmd.js", cmdjs
-
 task "publish", "Compiles and publishes to npm", ->
     # Compile the coffeescript
-    spawn path.coffeescript, "--compile --output lib/ src/".split " ", ->
+    spawn path.coffeescript, "--compile --output lib/ src/", ->
         # Add a hashbang to the cmd.js
-        invoke "addhashbang"
+        cmdjs = fs.readFileSync "lib/cmd.js"
+        cmdjs = "#!/usr/bin/env node\n" + cmdjs
+        fs.writeFileSync "lib/cmd.js", cmdjs
 
         # Publish to npm
         spawn "npm", "publish"
