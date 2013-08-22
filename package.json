@@ -1,6 +1,6 @@
 {
   "name": "takeapeek",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "A simple static webserver with only one command",
   "author": "Gio d'Amelio",
   "repository": {
