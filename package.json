@@ -9,6 +9,9 @@
   },
   "main": "./lib/index.js",
   "bin": "./lib/cmd.js",
+  "scripts": {
+    "test": "cake test"
+  },
   "devDependencies": {
     "coffee-script": "~1.6.3",
     "supervisor": "~0.5.3",
