@@ -1,6 +1,6 @@
 {
   "name": "takeapeek",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "A simple static webserver with only one command",
   "author": "Gio d'Amelio",
   "repository": {
@@ -20,8 +20,8 @@
     "request": "~2.27.0"
   },
   "dependencies": {
-    "colors": "~0.6.1",
-    "connect": "~2.8.4",
+    "colors": "~0.6.2",
+    "connect": "~2.8.8",
     "optimist": "~0.6.0",
     "lodash": "~1.3.1"
   },
