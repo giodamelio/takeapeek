@@ -1,0 +1,9 @@
+-d, --directory     The directory to serve.                            [default: "."]
+-i, --index         Show directory indexes.                            [default: true]
+-n, --dotfiles      Show dotfiles.                                     [default: false]
+-p, --port          The port to serve on.                              [default: 3141]
+-c, --config        Specify config file                              
+-t, --content-text  Serve all files with content-type of 'text/plain'  [default: false]
+-q, --quiet         Quiet mode. No output                              [default: false]
+-V, --version       Print the version info.                            [default: false]
+-h, --help          Prints this help.
