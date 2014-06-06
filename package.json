@@ -10,8 +10,9 @@
   "main": "./lib/index.js",
   "bin": "./lib/cmd.js",
   "dependencies": {
-      "highland": "^1.25.4",
-      "nconf": "^0.6.9"
+    "debug": "^1.0.0",
+    "highland": "^1.25.4",
+    "nconf": "^0.6.9"
   },
   "license": "MIT",
   "keywords": [
