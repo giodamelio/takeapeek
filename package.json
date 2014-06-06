@@ -9,22 +9,6 @@
   },
   "main": "./lib/index.js",
   "bin": "./lib/cmd.js",
-  "scripts": {
-    "test": "cake test"
-  },
-  "devDependencies": {
-    "coffee-script": "~1.6.3",
-    "supervisor": "~0.5.3",
-    "mocha": "~1.12.0",
-    "should": "~1.2.2",
-    "request": "~2.27.0"
-  },
-  "dependencies": {
-    "colors": "~0.6.2",
-    "connect": "~2.8.8",
-    "optimist": "~0.6.0",
-    "lodash": "~1.3.1"
-  },
   "license": "MIT",
   "keywords": [
     "file",
