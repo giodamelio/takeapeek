@@ -6,7 +6,7 @@
     "sourceMap": true,
     "outDir": "dist/"
   },
-  "excludes": [
+  "exclude": [
     "node_modules/"
   ]
 }
