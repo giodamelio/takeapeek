@@ -1,2 +1,5 @@
 node_modules/
-.session.vim
+typings/
+dist/
+*.js
+*.js.map
