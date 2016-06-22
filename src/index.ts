@@ -1,4 +1,6 @@
 // This still seems a little weird see https://github.com/Microsoft/TypeScript/issues/3337
+import * as path from 'path';
+
 import * as express from 'express';
 import * as nconf from 'nconf';
 
@@ -13,9 +15,10 @@ if (nconf.get('help')) {
 
 const app = express();
 
-app.get('/', function(req, res) {
-  res.send('Hello World!');
-});
+// Serve the directory
+app.use(express.static(
+  path.resolve(process.cwd(), nconf.get('directory'))
+));
 
 app.listen(nconf.get('port'), function() {
   console.log(`takepeek listening at http://localhost:${nconf.get('port')}`);
