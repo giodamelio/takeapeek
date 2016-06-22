@@ -1,6 +1,6 @@
 takeapeek
 =========
-[![Build Status](https://travis-ci.org/giodamelio/takeapeek.png?branch=master)](https://travis-ci.org/giodamelio/takeapeek) [![NPM version](https://badge.fury.io/js/takeapeek.png)](https://npmjs.org/package/takeapeek) [![Dependency Status](https://gemnasium.com/giodamelio/takeapeek.png)](https://gemnasium.com/giodamelio/takeapeek)
+[![NPM version](https://badge.fury.io/js/takeapeek.png)](https://npmjs.org/package/takeapeek) [![Dependency Status](https://gemnasium.com/giodamelio/takeapeek.png)](https://gemnasium.com/giodamelio/takeapeek)
 
 [![NPM](https://nodei.co/npm/takeapeek.png)](https://nodei.co/npm/takeapeek/)
 
@@ -11,53 +11,26 @@ Install
 
 You can install from npm
 
-    sudo npm install -g takeapeek
-
-Or get the latest from github(not really necessary, I push to npm often)
-
-    sudo npm install -g https://github.com/giodamelio/takeapeek.git
+    npm install -g takeapeek
 
 Usage
 -----
 
-    -d, --directory     The directory to serve.                            [default: "."]
-    -i, --index         Show directory indexes.                            [default: true]
-    -n, --dotfiles      Show dotfiles.                                     [default: false]
-    -p, --port          The port to serve on.                              [default: 3141]
-    -c, --config        Specify config file                              
-    -t, --content-text  Serve all files with content-type of 'text/plain'  [default: false]
-    -v, --verbose       Verbose logging.                                   [default: false]
-    -q, --quiet         Quiet mode. No output                              [default: false]
-    -V, --version       Print the version info.                            [default: false]
-    -h, --help          Prints this help.
+    --directory, -d     The directory to serve          [string]  [default: "."]
+    --index, -i         Show directory indexs           [boolean] [default: true]
+    --hidden            Show hidden files               [boolean] [default: false]
+    --port, -p          The port the serve on                     [default: 3141]
+    --content-text, -t  Serve all files with content-type of 'text/plain'
+                                                        [boolean] [default: false]
+    --quiet, -q         Print nothing                   [boolean] [default: false]
+    --help, -h          Prints help
 
 Config files
 ------------
 
-takeapeek will automaticly check `.takeapeekrc` and `~/.takeapeekrc`, you can specify a specific config file with the `-c` option.
+takeapeek will automaticly check `.takeapeek.json` and `~/.takeapeek.json`.
 
-Config files are parsed as if they were options on the command line. E.g.
+License
+-------
 
-    -d .. -v
-
-Would serve the parent directory verbosely
-
-Using as a module
------------------
-
-You can use takeapeek as a module if you want.
-
-    takeapeek = require "takeapeek"
-    tap = new takeapeek options 
-
-The options line up to the long names in the usage above.
-
-Thanks
-------
-
-This project would have been a real pain in the ass without these awesome FOSS projects.
-
- - [Connect](https://github.com/senchalabs/connect)
- - [Optimist](https://github.com/substack/node-optimist)
- - [lodash](https://github.com/bestiejs/lodash/)
- - [colors](https://github.com/Marak/colors.js)
+This repo is licensed under the MIT license. See `./LICENSE` for the full text.
