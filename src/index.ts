@@ -37,7 +37,14 @@ if (nconf.get('index')) {
     const dir = path.join(DIRECTORY, req.url);
     if (fs.existsSync(dir)) {
       // List the directory
-      const children = fs.readdirSync(dir);
+      const children = fs.readdirSync(dir)
+        // Filter out hidden files and directories unless specfied
+        .filter(function(file) {
+          if (!nconf.get('hidden')) {
+            return file[0] !== '.';
+          }
+          return true;
+        });
 
       // Render our template
       const page = indexTemplate({
