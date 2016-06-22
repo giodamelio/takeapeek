@@ -4,6 +4,13 @@ import * as nconf from 'nconf';
 
 import './config';
 
+if (nconf.get('help')) {
+  console.log('Usage: takepeek <args>\n');
+  nconf.stores.argv.showHelp();
+  console.log('Invert boolean options with no prefix (e.g. --no-index)\n');
+  process.exit(0);
+}
+
 const app = express();
 
 app.get('/', function(req, res) {
