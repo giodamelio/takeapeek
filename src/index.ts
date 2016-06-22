@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import * as express from 'express';
 import * as nconf from 'nconf';
 import * as handlebars from 'handlebars';
+import * as morgan from 'morgan';
 
 import './config';
 
@@ -29,6 +30,11 @@ const indexTemplate = handlebars.compile(
 );
 
 const app = express();
+
+// Log the requests
+if (!nconf.get('quiet')) {
+  app.use(morgan('dev'));
+}
 
 // Serve the directory
 // Turn expresses indexes off, we are making our own
