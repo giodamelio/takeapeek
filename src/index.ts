@@ -15,6 +15,11 @@ if (nconf.get('help')) {
   process.exit(0);
 }
 
+if (nconf.get('quiet')) {
+  // Make console.log quiet
+  console.log = function() {}
+}
+
 // Resolve the directory we are serving
 const DIRECTORY = path.resolve(process.cwd(), nconf.get('directory'));
 

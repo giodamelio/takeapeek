@@ -36,12 +36,6 @@ nconf
       describe: `Serve all files with content-type of 'text/plain'`,
       type: 'boolean',
     },
-    verbose: {
-      alias: 'v',
-      default: false,
-      describe: 'Print more information',
-      type: 'boolean',
-    },
     quiet: {
       alias: 'q',
       default: false,
