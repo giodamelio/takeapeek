@@ -11,7 +11,7 @@ import './config';
 if (nconf.get('help')) {
   console.log('Usage: takepeek <args>\n');
   nconf.stores.argv.showHelp();
-  console.log('Invert boolean options with no prefix (e.g. --no-index)\n');
+  console.log('Invert boolean options with "no" prefix (e.g. --no-index)\n');
   process.exit(0);
 }
 
@@ -26,6 +26,7 @@ const indexTemplate = handlebars.compile(
 const app = express();
 
 // Serve the directory
+// Turn expresses indexes off, we are making our own
 app.use(express.static(DIRECTORY, {
   index: false,
 }));
