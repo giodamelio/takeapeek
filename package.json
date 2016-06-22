@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "express": "^4.14.0",
-    "rc": "^1.1.6"
+    "nconf": "^0.8.4"
   },
   "license": "MIT",
   "keywords": [
@@ -22,6 +22,7 @@
   "preferGlobal": true,
   "devDependencies": {
     "@types/express": "^4.0.23-alpha",
+    "@types/nconf": "0.0.22-alpha",
     "@types/serve-static": "^1.7.21-alpha",
     "typescript": "^1.9.0-dev.20160620-1.0"
   }
