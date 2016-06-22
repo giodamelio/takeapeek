@@ -39,7 +39,6 @@ if (!nconf.get('quiet')) {
 // Serve the directory
 // Turn expresses indexes off, we are making our own
 app.use(express.static(DIRECTORY, {
-  index: false,
   setHeaders(res, path, stat) {
     if (nconf.get('content-text')) {
       res.set('Content-Type', 'text/plain');
