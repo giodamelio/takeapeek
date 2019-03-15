@@ -8,16 +8,17 @@ const morgan = require('morgan');
 
 const config = require('./config');
 
-if (nconf.get('help')) {
-  console.log('Usage: takepeek <args>\n');
-  nconf.stores.argv.showHelp();
-  console.log('Invert boolean options with "no" prefix (e.g. --no-index)\n');
-  process.exit(0);
+function log(...args) {
+  // Make console.log quiet
+  if (nconf.get('quiet')) return;
+  console.log(...args);
 }
 
-if (nconf.get('quiet')) {
-  // Make console.log quiet
-  console.log = function() {}
+if (nconf.get('help')) {
+  log('Usage: takepeek <args>\n');
+  nconf.stores.argv.showHelp();
+  log('Invert boolean options with "no" prefix (e.g. --no-index)\n');
+  process.exit(0);
 }
 
 // Resolve the directory we are serving
@@ -80,5 +81,5 @@ app.use(function(req, res) {
 });
 
 app.listen(nconf.get('port'), function() {
-  console.log(`takepeek listening at http://localhost:${nconf.get('port')}`);
+  log(`takepeek listening at http://localhost:${nconf.get('port')}`);
 });
