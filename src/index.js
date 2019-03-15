@@ -1,13 +1,12 @@
-// This still seems a little weird see https://github.com/Microsoft/TypeScript/issues/3337
-import * as path from 'path';
-import * as fs from 'fs';
+const path = require('path');
+const fs = require('fs');
 
-import * as express from 'express';
-import * as nconf from 'nconf';
-import * as handlebars from 'handlebars';
-import * as morgan from 'morgan';
+const express = require('express');
+const nconf = require('nconf');
+const handlebars = require('handlebars');
+const morgan = require('morgan');
 
-import './config';
+const config = require('./config');
 
 if (nconf.get('help')) {
   console.log('Usage: takepeek <args>\n');

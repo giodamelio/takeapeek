@@ -7,10 +7,8 @@
     "type": "git",
     "url": "https://github.com/giodamelio/takeapeek.git"
   },
-  "scripts": {
-    "lint": "tslint 'src/**/*.ts'"
-  },
-  "bin": "./dist/bin.js",
+  "scripts": {},
+  "bin": "src/bin.js",
   "dependencies": {
     "express": "^4.14.0",
     "handlebars": "^4.0.5",
@@ -26,13 +24,5 @@
     "fileserver"
   ],
   "preferGlobal": true,
-  "devDependencies": {
-    "@types/express": "^4.0.23-alpha",
-    "@types/handlebars": "^4.1.0",
-    "@types/morgan": "^1.2.22-alpha",
-    "@types/nconf": "^0.10.0",
-    "@types/serve-static": "^1.7.21-alpha",
-    "tslint": "^5.14.0",
-    "typescript": "^3.3.3333"
-  }
+  "devDependencies": {}
 }

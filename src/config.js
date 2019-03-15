@@ -1,7 +1,7 @@
-import * as path from 'path';
-import * as os from 'os';
+const path = require('path');
+const os = require('os');
 
-import * as nconf from 'nconf';
+const nconf = require('nconf');
 
 // Get the config. In order of precedence
 nconf
