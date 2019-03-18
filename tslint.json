@@ -1,6 +1,0 @@
-{
-  "extends": "tslint:latest",
-  "rules": {
-    "quotemark": ["single", "jsx-double"]
-  }
-}
